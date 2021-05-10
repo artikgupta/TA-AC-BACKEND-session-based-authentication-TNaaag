@@ -1,14 +1,16 @@
 {
-  "name": "altcampus-assignment",
-  "version": "1.0.0",
-  "description": "",
-  "main": "",
+  "name": "block-bnaaey",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "jest --passWithNoTests"
+    "start": "node ./bin/www"
   },
-  "author": "AltCampus",
-  "license": "GNU GPL V3",
   "dependencies": {
-    "jest": "^26.0.1"
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
   }
 }
