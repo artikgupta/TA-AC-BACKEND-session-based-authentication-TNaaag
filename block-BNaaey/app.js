@@ -7,6 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+require("dotenv").config
+
 var app = express();
 
 // view engine setup
@@ -25,7 +27,6 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
-    // store: new MongoStore.create({ mongoUrl: 'mongodb://localhost/register' }),
   })
 );
 
