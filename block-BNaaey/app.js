@@ -19,6 +19,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    // store: new MongoStore.create({ mongoUrl: 'mongodb://localhost/register' }),
+  })
+);
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
