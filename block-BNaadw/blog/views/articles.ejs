@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheet/style.css" />
+    <title>Blogs</title>
+  </head>
+  <body class="index">
+    <header>
+      <h1>List of Articles</h1>
+    </header>
+    <% if(user){%>
+    <div class="users">Welcom <%= user.fullName()%></div>
+    <%}%>
+    <ul class="index-root">
+      <%if(articles.length) { %> <% articles.forEach((article)=>{ %>
+      <li>
+        <h3><%= article.title%></h3>
+        <p><%= article.description%></p>
+        <p><%= article.tags%></p>
+        <p>Written by: <span><%= article.author%></span></p>
+        <h5>likes: <span><%= article.likes%></span></h5>
+        <a href="/articles/<%= article.slug%>">
+          <button class="btn">See more</button>
+        </a>
+      </li>
+      <% }) %> <% } else {%>
+      <h2>no users available</h2>
+      <% }%>
+     
+    </ul>
+    <%if(session) { %>
+    <a href="/articles/new" class="add">
+      <button class="btn-add">Add article</button>
+    </a>
+    <% } %> <%if(!session){%>
+    <a href="/users/login" class="add">
+      <button class="btn-add">Add article</button>
+    </a>
+    <%}%>
+  </body>
+</html>
