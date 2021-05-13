@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheet/style.css" />
+    <title>Blogs</title>
+  </head>
+  <body class="single">
+    <header>
+      <h1>List of Articles</h1>
+    </header>
+    <ul class="root">
+      <h3><%= article.title%></h3>
+      <p><%= article.description%></p>
+      <p><%= article.tags%></p>
+      <p>Written by: <span><%= article.author%></span></p>
+      <h5>
+        likes: <span><%= article.likes%></span>
+
+        <%if(session) { %>
+        <div class="like">
+          <a href="/articles/<%= article.slug%>/like">
+            <button class="btn btn-like">like</button>
+          </a>
+          <a href="/articles/<%= article.slug%>/dislike">
+            <button class="btn btn-dislike">dislike</button>
+          </a>
+        </div>
+        <% } %> <%if(!session) { %>
+        <div class="like">
+          <a href="/users/login">
+            <button class="btn btn-like">like</button>
+          </a>
+          <a href="/users/login">
+            <button class="btn btn-dislike">dislike</button>
+          </a>
+        </div>
+        <% } %>
+      </h5>
+
+      <%if(session) { %>
+      <div>
+        <a href="/articles/<%= article.id%>/edit">
+          <button class="btn">edit</button>
+        </a>
+        <a href="/articles/<%= article.id%>/delete">
+          <button class="btn">Delete</button>
+        </a>
+      </div>
+      <% } %> <%if(!session) { %>
+      <div>
+        <a href="/users/login">
+          <button class="btn">edit</button>
+        </a>
+        <a href="/users/login">
+          <button class="btn">Delete</button>
+        </a>
+      </div>
+      <% } %>
+    
+      <%if(session) { %>
+      <form
+        action="/articles/<%= article.id%>/comments"
+        method="POST"
+        class="comment"
+      >
+        <textarea
+          name="content"
+          id=""
+          cols="15"
+          rows="5"
+          placeholder="add comment"
+        ></textarea>
+        <button>add</button>
+      </form>
+      <% } %>
+    </ul>
+  </body>
+</html>
